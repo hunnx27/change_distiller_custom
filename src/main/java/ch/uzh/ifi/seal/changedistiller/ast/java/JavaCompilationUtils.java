@@ -80,12 +80,12 @@ public final class JavaCompilationUtils {
      * @return the compilation of the file
      * @throws InvalidSyntaxException if the file has syntax errors.
      */
-    public static JavaCompilation compile(File file, long version) {
-        CompilerOptions options = getDefaultCompilerOptions(version);
+    public static JavaCompilation compile(File file, long version) { CompilerOptions options = getDefaultCompilerOptions(version);
         Parser parser = createCommentRecorderParser(options);
         ICompilationUnit cu = createCompilationUnit(FileUtils.getContent(file), file.getName());
         CompilationResult compilationResult = createDefaultCompilationResult(cu, options);
-        return new JavaCompilation(parser.parse(cu, compilationResult), parser.scanner);
+        JavaCompilation result = new JavaCompilation(parser.parse(cu, compilationResult), parser.scanner);
+        return result;
     }
 
     private static CompilationResult createDefaultCompilationResult(ICompilationUnit cu, CompilerOptions options) {

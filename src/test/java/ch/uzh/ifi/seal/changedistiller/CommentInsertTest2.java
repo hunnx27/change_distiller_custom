@@ -1,4 +1,4 @@
-package ch.uzh.ifi.seal.changedistiller.unittest;
+package ch.uzh.ifi.seal.changedistiller;
 
 /*
  * #%L
@@ -20,6 +20,7 @@ package ch.uzh.ifi.seal.changedistiller.unittest;
  * #L%
  */
 
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
@@ -28,24 +29,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ch.uzh.ifi.seal.changedistiller.model.entities.SourceCodeChange;
+import ch.uzh.ifi.seal.changedistiller.unittest.FileDistillerUtil;
 
-public class DecreasingAccessibilityChangeTest {
+public class CommentInsertTest2 {
 	List<SourceCodeChange> sourceCodeChangeList;
-	
+
 	@Before
-	public void setUp() 
-		sourceCodeChangeList = FileDistillerUtil.getChangesFromFile("DecreasingAccessibilityChange_Left.java", "DecreasingAccessibilityChange_Right.java");
+	public void setUp() {
+		sourceCodeChangeList = FileDistillerUtil.getChangesFromFile("test/file1.java", "test/file2.java");
 	}
-	
+
 	@Test
-	public void decreasingAccesibilityChangeTest() {
-		String expected = "DECREASING_ACCESSIBILITY_CHANGE\n";
-		
+	public void classRenamingTest() {
+		String expected = "STATEMENT_INSERT\nCOMMENT_INSERT\n";
+
 		StringBuilder stringBuilder = new StringBuilder();
 		for(SourceCodeChange change : sourceCodeChangeList) {
 			stringBuilder.append(change.getLabel() + "\n");
 		}
-		
-		assertEquals(stringBuilder.toString(), expected);
+
+		assertEquals(expected,stringBuilder.toString());
 	}
 }

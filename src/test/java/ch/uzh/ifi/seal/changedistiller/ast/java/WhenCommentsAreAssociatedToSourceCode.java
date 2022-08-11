@@ -26,6 +26,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.swing.tree.TreeNode;
+
 import org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration;
 import org.eclipse.jdt.internal.compiler.lookup.ClassScope;
 import org.junit.BeforeClass;
@@ -109,8 +111,8 @@ public class WhenCommentsAreAssociatedToSourceCode extends JavaDistillerTestCase
 
     @SuppressWarnings("unchecked")
     private Node findNode(String value) {
-        for (Enumeration<Node> e = sRoot.breadthFirstEnumeration(); e.hasMoreElements();) {
-            Node node = e.nextElement();
+        for (Enumeration<TreeNode> e = sRoot.breadthFirstEnumeration(); e.hasMoreElements();) {
+            Node node = (Node) e.nextElement();
             if (node.getValue().equals(value)) {
                 return node;
             }

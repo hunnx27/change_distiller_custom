@@ -23,6 +23,8 @@ package ch.uzh.ifi.seal.changedistiller.treedifferencing.matching.measure;
 import java.util.Enumeration;
 import java.util.Set;
 
+import javax.swing.tree.TreeNode;
+
 import ch.uzh.ifi.seal.changedistiller.treedifferencing.Node;
 import ch.uzh.ifi.seal.changedistiller.treedifferencing.NodePair;
 
@@ -66,9 +68,9 @@ public class ChawatheCalculator implements NodeSimilarityCalculator {
     private int numberOfCommentNodes(Node node) {
         int count = 0;
 
-        Enumeration<Node> nodes = node.breadthFirstEnumeration();
+        Enumeration<TreeNode> nodes = node.breadthFirstEnumeration();
         while (nodes.hasMoreElements()) {
-            Node child = nodes.nextElement();
+            Node child = (Node) nodes.nextElement();
             if (isComment(child)) {
                 count++;
             }

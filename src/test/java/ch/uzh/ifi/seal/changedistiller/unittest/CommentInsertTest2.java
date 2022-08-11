@@ -30,17 +30,17 @@ import org.junit.Test;
 
 import ch.uzh.ifi.seal.changedistiller.model.entities.SourceCodeChange;
 
-public class CommentMoveFailTest {
+public class CommentInsertTest2 {
 	List<SourceCodeChange> sourceCodeChangeList;
 
 	@Before
 	public void setUp() {
-		sourceCodeChangeList = FileDistillerUtil.getChangesFromFile("CommentMoveFail_Left.java", "CommentMoveFail_Right.java");
+		sourceCodeChangeList = FileDistillerUtil.getChangesFromFile("test/file1.java", "test/file2.java");
 	}
 
 	@Test
 	public void classRenamingTest() {
-		String expected = "COMMENT_MOVE\n";
+		String expected = "STATEMENT_INSERT\nCOMMENT_INSERT\n";
 
 		StringBuilder stringBuilder = new StringBuilder();
 		for(SourceCodeChange change : sourceCodeChangeList) {
